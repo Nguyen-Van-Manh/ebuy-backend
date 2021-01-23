@@ -49,7 +49,7 @@ const uri = process.env.DB_URL
     //     }
     //   }
     // }),
-    MongooseModule.forRoot(uri),
+    MongooseModule.forRoot(uri || "mongodb://127.0.0.1:27017/ebuy"),
     GraphQLModule.forRoot({
       introspection: true,
       playground: true,
