@@ -15,7 +15,6 @@ import * as Express from 'express';
 
 const MongoStore = require('connect-mongo')(session);
 const uri = process.env.DB_URL
-
 const server = Express();
 server.get('/', (req, res) => res.send('OK'))
 
@@ -49,7 +48,7 @@ async function bootstrap() {
         maxAge: 60000,
       },
       store: new MongoStore({
-        url: uri
+        url: uri || "mongodb://127.0.0.1:27017/ebuy"
       }),
     })
   )
