@@ -48,7 +48,7 @@ const { GraphQLUpload } = require('graphql-upload');
     //     }
     //   }
     // }),
-    MongooseModule.forRoot(`${process.env.DB_URL}`),
+    MongooseModule.forRoot(process.env.DB_URL || 'mongodb+srv://manh123:manhuetvnuk63j@cluster0.ntafe.mongodb.net/ebuy'),
     GraphQLModule.forRoot({
       introspection: true,
       playground: true,
