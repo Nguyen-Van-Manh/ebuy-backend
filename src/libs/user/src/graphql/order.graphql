@@ -1,0 +1,52 @@
+type OrderLine implements Node {
+    _id: ID!
+    productVariant: ProductVariant 
+    # sku: String!
+    # name: String!
+    # price: Int!
+    # featureAsset: Asset
+    quantity: Int
+    # discount: Int
+    total: Int
+    createdAt: Date
+    updatedAt: Date
+}
+
+type Order implements Node {
+    _id: ID!
+    status: Boolean
+    user: User
+    lines: [OrderLine]
+    state: String!
+    shippingAddress: ShippingAddress
+    totalQuantity: Int
+    subTotal: Int
+    # counponCodes: String
+    # discounts: Int
+    # payment: String
+    # shipping: String
+    coupon: Coupon
+    discount: Int
+    total: Int
+    countryCode: String
+    currency: String
+    createdAt: Date
+    updatedAt: Date
+}
+
+type Query {
+    activeOrder: Order
+}
+
+type Mutation {
+    addItemToOrder(variantId: ID!, quantity: Int!): Order
+    removeItemFromOrder(orderLineId: ID!): Order
+    incrementOrderItem(orderLineId: ID!): Order
+    decreaseOrderItem(orderLineId: ID!): Order
+    setShippingAddressForOrder(
+        "Shipping address ID"
+        addressId: ID!
+    ): Order
+    applyCouponToOrder(couponId: ID!): Order
+    removeCouponFromOrder: Order
+}

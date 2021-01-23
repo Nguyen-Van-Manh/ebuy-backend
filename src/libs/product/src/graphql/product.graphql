@@ -1,0 +1,73 @@
+scalar Date
+interface Node {
+    _id: ID!
+    createdAt: Date
+    updatedAt: Date
+}
+input CreateProductInput {
+    name: String!
+    description: String!
+    slug: String!
+    inStock: Int!
+    active: Boolean
+}
+type Product implements Node{
+    _id: ID!
+    name: String!
+    description: String!
+    slug: String!
+    inStock: Int!
+    active: Boolean
+    sale: ProductSale
+    createdAt: Date
+    updatedAt: Date
+    variants: [ProductVariant]
+}
+type ListProducts {
+    items: [Product!]
+    totalItems: Int!
+}
+enum TypeAsset {
+    IMAGE
+    VIDEO
+    BINARY
+    NONE
+}
+type ProductVariant implements Node {
+    _id: ID!
+    productId: ID!
+    product: Product!
+    inStock: Int!
+    active: Boolean
+    sku: String!
+    name: String!
+    price: Int!
+    type: TypeAsset!
+    color: String
+    width: Float
+    height: Float
+    weight: Float
+    preview: String
+    createdAt: Date
+    updatedAt: Date
+}
+input CreateProductVariantInput {
+    productId: ID!
+    inStock: Int!
+    active: Boolean
+    sku: String!
+    name: String!
+    price: Int!
+    color: String
+    width: Float
+    height: Float,
+    type: TypeAsset!
+}
+type Query {
+    product(_id: ID!): Product
+    products(slug: String!): ListProducts!
+    productVariant(_id: ID!): ProductVariant
+}
+type Mutation {
+    createProduct(input: CreateProductInput!): Product
+}

@@ -1,0 +1,24 @@
+type ProductSale implements Node {
+    _id: ID!
+    discount: Int!
+    percentage: Int!
+    createdAt: Date
+    updatedAt: Date
+}
+input ProductSaleConfig {
+    discount: Int!
+    percentage: Int!
+}
+type Mutation {
+    setProductPromotion(_id: ID!, config: ProductSaleConfig!): Product!
+    removeProductPromotion(
+        "Product ID"
+        _id: ID!
+        ): Product!
+    updateProductPromotion(
+        "Product ID"
+        _id: ID!,
+        "Config promotion"
+        config: ProductSaleConfig!
+        ): Product!
+}
