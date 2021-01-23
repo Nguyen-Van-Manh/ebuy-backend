@@ -49,7 +49,7 @@ async function bootstrap() {
         maxAge: 60000,
       },
       store: new MongoStore({
-        url: uri || "mongodb://127.0.0.1:27017/ebuy"
+        url: uri || "mongodb+srv://manh123:manhuetvnuk63j@cluster0.ntafe.mongodb.net/ebuy?retryWrites=true&w=majority"
       }),
     })
   )
