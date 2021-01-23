@@ -14,6 +14,7 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import * as Express from 'express';
 
 const MongoStore = require('connect-mongo')(session);
+const uri = process.env.DB_URL
 
 const server = Express();
 server.get('/', (req, res) => res.send('OK'))
@@ -48,7 +49,7 @@ async function bootstrap() {
         maxAge: 60000,
       },
       store: new MongoStore({
-        url: process.env.DB_URL || 'mongodb+srv://manh123:manhuetvnuk63j@cluster0.ntafe.mongodb.net/ebuy'
+        url: uri
       }),
     })
   )

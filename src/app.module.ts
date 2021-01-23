@@ -21,6 +21,7 @@ import path from 'path';
 import { ShippingMethodModule } from './libs/shipping-method';
 
 const { GraphQLUpload } = require('graphql-upload');
+const uri = process.env.DB_URL
 @Module({
   imports: [
     Upload,
@@ -48,7 +49,7 @@ const { GraphQLUpload } = require('graphql-upload');
     //     }
     //   }
     // }),
-    MongooseModule.forRoot(process.env.DB_URL || 'mongodb+srv://manh123:manhuetvnuk63j@cluster0.ntafe.mongodb.net/ebuy'),
+    MongooseModule.forRoot(uri),
     GraphQLModule.forRoot({
       introspection: true,
       playground: true,
