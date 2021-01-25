@@ -1,0 +1,20 @@
+type Admin implements Node {
+    _id: ID!
+    username: String!
+    email: String!
+    createdAt: Date
+    updatedAt: Date
+}
+
+type AdminLoginSuccess {
+    token: String!
+    admin: Admin!
+}
+
+union AdminAuthenticateResult = AdminLoginSuccess | InvalidCredentialsError
+type Query {
+    adminInfo: Admin
+}
+type Mutation {
+    adminLogin(input: LoginInput): AdminAuthenticateResult!
+}

@@ -62,6 +62,7 @@ export type Query = {
   eligibleShippingMethod?: Maybe<Array<ShippingMethod>>;
   getShopInfo: ShopInfo;
   getSliders?: Maybe<Array<Slider>>;
+  adminInfo?: Maybe<Admin>;
   activeOrder?: Maybe<Order>;
   me?: Maybe<User>;
 };
@@ -116,6 +117,7 @@ export type Mutation = {
   updateShippingAddress?: Maybe<ListAddress>;
   setAsDefaultAddress?: Maybe<ListAddress>;
   uploadFile?: Maybe<Scalars['Boolean']>;
+  adminLogin: AdminAuthenticateResult;
   addItemToOrder?: Maybe<Order>;
   removeItemFromOrder?: Maybe<Order>;
   incrementOrderItem?: Maybe<Order>;
@@ -228,6 +230,11 @@ export type MutationSetAsDefaultAddressArgs = {
 
 export type MutationUploadFileArgs = {
   file?: Maybe<Scalars['Upload']>;
+};
+
+
+export type MutationAdminLoginArgs = {
+  input?: Maybe<LoginInput>;
 };
 
 
@@ -546,6 +553,23 @@ export type File = {
   mimetype: Scalars['String'];
   encoding: Scalars['String'];
 };
+
+export type Admin = Node & {
+  __typename?: 'Admin';
+  _id: Scalars['ID'];
+  username: Scalars['String'];
+  email: Scalars['String'];
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+};
+
+export type AdminLoginSuccess = {
+  __typename?: 'AdminLoginSuccess';
+  token: Scalars['String'];
+  admin: Admin;
+};
+
+export type AdminAuthenticateResult = AdminLoginSuccess | InvalidCredentialsError;
 
 export type OrderLine = Node & {
   __typename?: 'OrderLine';

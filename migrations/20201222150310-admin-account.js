@@ -4,10 +4,11 @@ module.exports = {
   async up(db, client) {
     const hashPassword = await bcrypt.hash('superadmin', 10)
     console.log(hashPassword)
-    return db.collection('users').insert({
+    return db.collection('admins').insert({
       username: 'superadmin',
       password: hashPassword,
-      email: 'ebuyadmin@gmail.com',
+      email: 'superadmin@gmail.com',
+      isAdmin: true,
       createdAt: Date.now(),
       updatedAt: Date.now()
     })
