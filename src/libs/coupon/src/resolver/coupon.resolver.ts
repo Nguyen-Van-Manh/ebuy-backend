@@ -9,36 +9,32 @@ import { CouponConfig } from '../../../../generate-types';
 import { Action } from '../../../../shared/casl/action.enum';
 @Resolver()
 export class CouponResolver {
-    constructor(
-        private couponService: CouponService
-    ) {
-        
-    }
-    @Mutation()
-    @UseGuards(TokenAuthGuard, PoliciesGuard)
-    @CheckPolicies(new CouponPolicy(Action.Manage))
-    createCoupon(@Args('config') config: CouponConfig) {
-        return this.couponService.createCoupon(config)
-    }
+  constructor(private couponService: CouponService) {}
+  @Mutation()
+  @UseGuards(TokenAuthGuard, PoliciesGuard)
+  @CheckPolicies(new CouponPolicy(Action.Manage))
+  createCoupon(@Args('config') config: CouponConfig) {
+    return this.couponService.createCoupon(config);
+  }
 
-    @Mutation()
-    @UseGuards(TokenAuthGuard, PoliciesGuard)
-    @CheckPolicies(new CouponPolicy(Action.Manage))
-    removeCoupon(@Args('_id') _id: string) {
-        return this.couponService.removeCoupon(_id)
-    }
-    
-    @Mutation()
-    @UseGuards(TokenAuthGuard, PoliciesGuard)
-    @CheckPolicies(new CouponPolicy(Action.Manage))
-    updateCoupon(@Args('_id')_id, @Args('config') config: CouponConfig) {
-        return this.couponService.updateCoupon(_id, config)
-    }
+  @Mutation()
+  @UseGuards(TokenAuthGuard, PoliciesGuard)
+  @CheckPolicies(new CouponPolicy(Action.Manage))
+  removeCoupon(@Args('_id') _id: string) {
+    return this.couponService.removeCoupon(_id);
+  }
 
-    @Query()
-    @UseGuards(TokenAuthGuard, PoliciesGuard)
-    @CheckPolicies(new CouponPolicy(Action.Read))
-    getAllCoupon() {
-        return this.couponService.getListCoupon()
-    }
+  @Mutation()
+  @UseGuards(TokenAuthGuard, PoliciesGuard)
+  @CheckPolicies(new CouponPolicy(Action.Manage))
+  updateCoupon(@Args('_id') _id, @Args('config') config: CouponConfig) {
+    return this.couponService.updateCoupon(_id, config);
+  }
+
+  @Query()
+  @UseGuards(TokenAuthGuard, PoliciesGuard)
+  @CheckPolicies(new CouponPolicy(Action.Read))
+  getAllCoupon() {
+    return this.couponService.getListCoupon();
+  }
 }

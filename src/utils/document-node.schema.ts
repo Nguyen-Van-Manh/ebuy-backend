@@ -3,11 +3,11 @@ import { Types, Document } from 'mongoose';
 
 @Schema()
 export class DocumentNode {
-    _id: Types.ObjectId
+  _id: Types.ObjectId;
 
-    @Prop({type: Date, default: Date.now()})
-    createdAt: Date
-    
-    @Prop({type: Date, default: Date.now()})
-    updatedAt: Date
+  @Prop({ type: Date, default: Date.now() })
+  createdAt: Date;
+
+  @Prop({ type: Date, default: Date.now() })
+  updatedAt: Date;
 }

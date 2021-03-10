@@ -36,3 +36,4 @@ lerna-debug.log*
 #Config Enviroment Variables
 app.yaml
 .env
+.gcloudignore

@@ -4,15 +4,13 @@ import { Slider } from '../../../libs/slider/src/schema/slider.schema';
 import { Action } from '../../../shared/casl/action.enum';
 
 export class SliderPolicy implements IPolicyHandler {
+  private permission: Action;
 
-    private permission: Action
+  constructor(_permission: Action) {
+    this.permission = _permission;
+  }
 
-    constructor(_permission: Action) {
-        this.permission = _permission
-    }
-
-    handle(ability: AppAbility): boolean {
-        return ability.can(this.permission, Slider)
-    }
-    
+  handle(ability: AppAbility): boolean {
+    return ability.can(this.permission, Slider);
+  }
 }

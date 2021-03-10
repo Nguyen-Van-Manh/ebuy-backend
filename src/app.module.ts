@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { GraphQLModule } from '@nestjs/graphql';
 // import { UserModule } from 'src/libs/user';
-import { UserModule } from './libs/user/index'
+import { UserModule } from './libs/user/index';
 import GraphQLJSON from 'graphql-type-json';
 import { ConfigModule } from '@nestjs/config';
 import { UploadModule } from './libs/upload';
@@ -20,13 +20,13 @@ import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 import path from 'path';
 import { ShippingMethodModule } from './libs/shipping-method';
 
-const { GraphQLUpload } = require('graphql-upload');
-const uri = process.env.DB_URL
+import { GraphQLUpload } from 'graphql-upload';
+const uri = process.env.DB_URL;
 @Module({
   imports: [
     Upload,
     ConfigModule.forRoot({
-      envFilePath: '.env'
+      envFilePath: '.env',
     }),
     // MailerModule.forRoot({
     //   transport: 'smtps://user@domain.com:pass@smtp.domain.com',
@@ -49,25 +49,31 @@ const uri = process.env.DB_URL
     //     }
     //   }
     // }),
-    MongooseModule.forRoot(process.env.DB_URL || "mongodb+srv://manh123:manhuetvnuk63j@cluster0.ntafe.mongodb.net/ebuy?retryWrites=true&w=majority"),
+    MongooseModule.forRoot(
+      process.env.DB_URL ||
+        'mongodb+srv://manh123:manhuetvnuk63j@cluster0.ntafe.mongodb.net/ebuy?retryWrites=true&w=majority',
+    ),
     GraphQLModule.forRoot({
       introspection: true,
       playground: true,
       debug: true,
-      typePaths: ['src/libs/**/src/graphql/*.graphql', 'src/shared/**/src/graphql/*.graphql'],
+      typePaths: [
+        'src/**/graphql/*.graphql',
+        'src/shared/**/src/graphql/*.graphql',
+      ],
       uploads: {
         maxFieldSize: 10000000,
-        maxFiles: 5
+        maxFiles: 5,
       },
-      resolvers: [{ JSON: GraphQLJSON }, {Upload: GraphQLUpload}],
+      resolvers: [{ JSON: GraphQLJSON }, { Upload: GraphQLUpload }],
       context: ({ req, res }) => {
         return {
           headers: req.headers,
           session: req.session,
           req: req,
-          res: res
-        }
-      }
+          res: res,
+        };
+      },
     }),
     UserModule,
     UploadModule,
@@ -80,8 +86,6 @@ const uri = process.env.DB_URL
     ShippingMethodModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-  ],
+  providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

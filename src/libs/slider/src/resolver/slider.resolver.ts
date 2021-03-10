@@ -4,11 +4,10 @@ import { SliderInput, SliderUpdate } from '../../../../generate-types';
 
 @Resolver('Slider')
 export class SliderResolver {
-    constructor(private sliderService: SliderService)
-    {}
+  constructor(private sliderService: SliderService) {}
 
-    @Query()
-    getSliders() {
-        return this.sliderService.getSliders()
-    }
+  @Query()
+  getSliders() {
+    return this.sliderService.getSliders();
+  }
 }

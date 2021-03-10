@@ -6,14 +6,14 @@ import { jwtConstants } from '../../constants';
 
 @Injectable()
 export class LocalStrategy extends PassportStrategy(Strategy) {
-    constructor(private authService: AuthService) {
-        super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            ignoreExpiration: false,
-            secretOrKey: jwtConstants.secret,
-        });
-    }
-    async validate(payload: any) {
-        return {profile: payload.profile}
-    }
+  constructor(private authService: AuthService) {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: jwtConstants.secret,
+    });
+  }
+  async validate(payload: any) {
+    return { profile: payload.profile };
+  }
 }

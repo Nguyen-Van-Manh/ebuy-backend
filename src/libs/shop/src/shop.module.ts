@@ -6,14 +6,11 @@ import { ShopService } from './service/shop.service';
 import { ShopResolver } from './resolver/shop.resolver';
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([
-            {name: Shop.name, schema: ShopSchema},
-        ])
-    ],
-    providers: [ShopService, ShopResolver],
-    controllers: [ShopController],
-    exports: []
+  imports: [
+    MongooseModule.forFeature([{ name: Shop.name, schema: ShopSchema }]),
+  ],
+  providers: [ShopService, ShopResolver],
+  controllers: [ShopController],
+  exports: [],
 })
-
 export class ShopModule {}

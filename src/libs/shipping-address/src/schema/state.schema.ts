@@ -3,15 +3,13 @@ import { Document, Types } from 'mongoose';
 
 @Schema()
 export class State {
+  _id: Types.ObjectId;
 
-    _id: Types.ObjectId
+  @Prop({ type: Number, required: true })
+  provinceId: number;
 
-    @Prop({type: Number, required: true})
-    provinceId: number
-
-    @Prop({type: String, required: true})
-    name: string
-
+  @Prop({ type: String, required: true })
+  name: string;
 }
-export type StateDocument = Document & State
-export const StateSchema = SchemaFactory.createForClass(State)
+export type StateDocument = Document & State;
+export const StateSchema = SchemaFactory.createForClass(State);

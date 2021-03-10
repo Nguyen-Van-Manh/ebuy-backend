@@ -13,26 +13,33 @@ import { TokenSchema, Token } from './schema/token.schema';
 import { TokenAuthGuard } from './guard/token-auth.guard';
 @Global()
 @Module({
-    imports: [
-        MongooseModule.forFeature([
-            {name: Token.name, schema: TokenSchema}
-        ]),
-        PassportModule.register({
-            session: true
-        }),
-        JwtModule.register({
-            secret: jwtConstants.secret,
-            signOptions: { expiresIn: "30days"},
-        }),
-    ],
-    providers: [
-        AuthService, LocalStrategy,
-        LocalAuthGuard, UserAuth, JwtStrategy,
-        JwtAuthGuard, TokenAuthGuard
-    ],
-    exports: [
-        AuthService, LocalStrategy,
-        LocalAuthGuard, JwtAuthGuard,
-        UserAuth, JwtStrategy, TokenAuthGuard] 
+  imports: [
+    MongooseModule.forFeature([{ name: Token.name, schema: TokenSchema }]),
+    PassportModule.register({
+      session: true,
+    }),
+    JwtModule.register({
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '30days' },
+    }),
+  ],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    LocalAuthGuard,
+    UserAuth,
+    JwtStrategy,
+    JwtAuthGuard,
+    TokenAuthGuard,
+  ],
+  exports: [
+    AuthService,
+    LocalStrategy,
+    LocalAuthGuard,
+    JwtAuthGuard,
+    UserAuth,
+    JwtStrategy,
+    TokenAuthGuard,
+  ],
 })
 export class AuthModule {}

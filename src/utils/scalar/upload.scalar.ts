@@ -1,6 +1,6 @@
 import { Scalar } from '@nestjs/graphql';
 
-import { GraphQLUpload } from "apollo-server-express";
+import { GraphQLUpload } from 'apollo-server-express';
 @Scalar('Upload')
 export class Upload {
   description = 'Upload custom scalar type';

@@ -6,17 +6,13 @@ import { SliderResolver } from './resolver/slider.resolver';
 import { SliderController } from './controller/slider.controller';
 import { MulterModule } from '@nestjs/platform-express';
 @Module({
-    imports: [
-        MongooseModule.forFeature([
-            {name: Slider.name, schema: SliderSchema}
-        ]),
-        MulterModule.register({
-            dest: './uploads/asset/home/slider'
-        })
-    ],
-    providers: [
-        SliderService, SliderResolver
-    ],
-    controllers: [SliderController]
+  imports: [
+    MongooseModule.forFeature([{ name: Slider.name, schema: SliderSchema }]),
+    MulterModule.register({
+      dest: './uploads/asset/home/slider',
+    }),
+  ],
+  providers: [SliderService, SliderResolver],
+  controllers: [SliderController],
 })
 export class SlideModule {}

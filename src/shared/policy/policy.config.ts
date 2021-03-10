@@ -1,7 +1,7 @@
 import { AppAbility } from '../../shared/casl/casl-ability.factory';
 
 export interface IPolicyHandler {
-    handle(ability: AppAbility): boolean;
+  handle(ability: AppAbility): boolean;
 }
 
 type PolicyHandlerCallback = (ability: AppAbility) => boolean;

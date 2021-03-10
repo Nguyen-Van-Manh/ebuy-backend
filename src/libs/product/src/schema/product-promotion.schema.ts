@@ -4,17 +4,18 @@ import { Document, Types } from 'mongoose';
 import { DocumentNode } from '../../../../utils/document-node.schema';
 
 @Schema()
-export class ProductPromotion extends DocumentNode{
+export class ProductPromotion extends DocumentNode {
+  @Prop({ type: Types.ObjectId, ref: 'Product' })
+  product: Types.ObjectId;
 
-    @Prop({type: Types.ObjectId, ref: 'Product'})
-    product: Types.ObjectId
+  @Prop({ type: Number, required: true, default: 10 })
+  discount: number;
 
-    @Prop({type: Number, required: true, default: 10})
-    discount: number
-
-    @Prop({type: Number, required: true, default: 10})
-    percentage: number
+  @Prop({ type: Number, required: true, default: 10 })
+  percentage: number;
 }
 
-export type ProductPromotionDocument = ProductPromotion & Document ;
-export const ProductPromotionSchema = SchemaFactory.createForClass(ProductPromotion)
+export type ProductPromotionDocument = ProductPromotion & Document;
+export const ProductPromotionSchema = SchemaFactory.createForClass(
+  ProductPromotion,
+);

@@ -1,6 +1,4 @@
-import { Resolver } from "@nestjs/graphql";
+import { Resolver } from '@nestjs/graphql';
 
 @Resolver('AdminAuthenticateResult')
-export class AdminResolver {
-
-}
+export class AdminResolver {}
